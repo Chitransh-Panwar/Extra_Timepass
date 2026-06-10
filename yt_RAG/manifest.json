@@ -1,0 +1,16 @@
+{
+    "manifest_version" : 3,
+    "name" : "Know the Page",
+    "version" : "1.0",
+    "description" : "know info about your current page ",
+    "permissions" : ["activeTab", "scripting", "tabs","sidePanel"],
+    "side_panel": {
+        "default_path": "sidepanel.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action" : {
+        
+    }
+}

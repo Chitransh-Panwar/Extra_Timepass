@@ -1,4 +1,7 @@
 
 **/.env
+yt_RAG/backend/.env
 
 **/.venv/
+yt_RAG/.venv
+web_scrapper_practice/.venv

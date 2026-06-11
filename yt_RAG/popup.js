@@ -1,7 +1,7 @@
 const sendbutton=document.getElementById("send")
 const questionin=document.getElementById("question")
 const responseDiv = document.getElementById("response")
-
+let currentSessionId = null;
 sendbutton.addEventListener("click",()=>{
     const questext=questionin.value.trim()
 
@@ -16,7 +16,8 @@ sendbutton.addEventListener("click",()=>{
             const payload = {
                 url: currenturl,
                 video_id: vidid,
-                question: questext
+                question: questext,
+                session_id: currentSessionId
             }
 
             console.log(payload)
@@ -37,6 +38,9 @@ sendbutton.addEventListener("click",()=>{
             .then(data=>{
                 console.log("backend response recived",data)
                 responseDiv.innerText = data.answer;
+                if (data.session_id) {
+                    currentSessionId = data.session_id;
+                }
             })
             .catch(error=>{
                 console.error("error occured ",error)

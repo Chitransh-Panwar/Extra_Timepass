@@ -5,3 +5,6 @@ yt_RAG/backend/.env
 **/.venv/
 yt_RAG/.venv
 web_scrapper_practice/.venv
+
+**/__pycache__
+yt_RAG/backend/__pycache__

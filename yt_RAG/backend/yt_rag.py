@@ -29,7 +29,7 @@ def format_docs(retriever_docs):
 
 def ask_youtube(video_id: str, question: str) -> str:
     try:
-        transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=["en"])
+        transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=["en", "hi", "es", "fr", "de", "pt", "ar", "ru", "ja", "ko", "zh", "it"])
         transcript = " ".join(chunk.text for chunk in transcript_list)
         
     except TranscriptsDisabled:

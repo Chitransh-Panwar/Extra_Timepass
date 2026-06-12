@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from yt_rag import YouTubeRAGBot
+from scraper import ask_webpage
 
 app = FastAPI()
 
@@ -31,6 +32,10 @@ async def ask_endpoint(payload: QueryPayload):
         try:
             if session_key not in active_sessions:
                 active_sessions[session_key] = YouTubeRAGBot(video_id=payload.video_id)
+            else:
+                bot = active_sessions[session_key]
+                if bot.video_id != payload.video_id:
+                    bot.update_video(payload.video_id)
             
             bot = active_sessions[session_key]
             result = bot.ask(payload.question)
@@ -42,5 +47,6 @@ async def ask_endpoint(payload: QueryPayload):
             
         except Exception as e:
             return {"error": f"Failed to process request: {str(e)}"}
-            
-    return {"answer": "web scraping coming soon"}
+    
+    result=await ask_webpage(payload.url, payload.question)
+    return {"answer":result}
